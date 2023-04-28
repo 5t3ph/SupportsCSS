@@ -1,0 +1,36 @@
+{
+  "name": "supports-css",
+  "version": "0.1.3",
+  "description": "Live, in-browser detection of modern CSS support for selectors, features, and at-rules. Applies support-based classes, exposes a results object, and allows custom tests.",
+  "main": "dist/bundle.min.js",
+  "module": "dist/bundle.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "docs": "npx @11ty/eleventy --input=. --output=. --formats=njk",
+    "build": "rollup --config",
+    "bump": "npm --no-git-tag-version version",
+    "prepare": "npm run docs && npm run build"
+  },
+  "keywords": [
+    "css",
+    "@supports",
+    "css support",
+    "testing",
+    "styles",
+    "modern css",
+    "browser support",
+    "feature detection"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/5t3ph/SupportsCSS.git"
+  },
+  "author": "5t3ph",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.1",
+    "rollup": "^3.21.0"
+  }
+}

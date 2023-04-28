@@ -1,3 +1,6 @@
+---
+permalink: README.md
+---
 # SupportsCSS
 
 > Live, in-browser detection of modern CSS support for selectors, features, and at-rules. Applies support-based classes, exposes a results object, and allows custom tests.
@@ -28,14 +31,14 @@ You might also enjoy the results collection created for easy-access in your Java
 Include via a script tag using UNPKG
 
 ```html
-<script src="https://www.unpkg.com/supports-css@0.1.3"></script>
+<script src="https://www.unpkg.com/supports-css@{{ pkg.version }}"></script>
 ```
 
 Follow that with a one-time initialization
 
 ```html
 <script>
-  const tests = ['at-container', 'at-container-style', 'at-layer', 'has'];
+  const tests = ['at-container', 'at-container-style-properties', 'at-layer', 'has'];
   window.SupportsCSS && SupportsCSS.init({ tests });
 </script>
 ```
@@ -44,9 +47,9 @@ Follow that with a one-time initialization
 
 ```html
 <script type="module">
-  import * as SupportsCSS from "https://cdn.skypack.dev/supports-css@0.1.3";
+  import * as SupportsCSS from "https://cdn.skypack.dev/supports-css@{{ pkg.version }}";
 
-  const tests = ['at-container', 'at-container-style', 'at-layer', 'has'];
+  const tests = ['at-container', 'at-container-style-properties', 'at-layer', 'has'];
   SupportsCSS.init({ tests });
 </script>
 ```
@@ -64,13 +67,20 @@ Import and initialize one-time in a location that will load client-side.
 ```js
 import * as SupportsCSS from 'supports-css';
 
-const tests = ['at-container', 'at-container-style', 'at-layer', 'has'];
+const tests = ['at-container', 'at-container-style-properties', 'at-layer', 'has'];
 SupportsCSS.init({tests});
 ```
 
 The `init` function does a check for `window` before attempting the tests.
 
-### Options
+### Host on your server
+
+Grab a copy from the `/dist/` folder as appropriate for your environment.
+
+- `bundle.min.js` - for use via a browser script include
+- `bundle.js` - for use as a module
+
+## Options
 
 The following can be passed to the `init()` function:
 
@@ -206,33 +216,7 @@ SupportsCSS.addTest("my-test", customResult);
 
 ## Test Suite
 
-| Feature Class | Global Name | Test Condition |
-|---|---|---|
-| at-container | AtContainer | `window.CSSContainerRule` |
-| at-container-style-properties | AtContainerStyleProperties | * [See explanation](#atcontainerstyleproperties-test) |
-| at-counter-style | AtCounterStyle | `window.CSSCounterStyleRule` |
-| at-layer | AtLayer | `window.CSSLayerBlockRule` |
-| at-property | AtProperty | `window.CSSPropertyRule` |
-| at-scope | AtScope | `window.CSSScopeRule` |
-| color-function | ColorFunction | `CSS.supports('color: color(srgb 0 0 1)')` |
-| color-mix | ColorMix | `CSS.supports('color: color-mix(in lch, white, black)')` |
-| container-units | ContainerUnits | `CSS.supports('width: 1cqi')` |
-| dynamic-viewport-units | DynamicViewportUnits | `CSS.supports('width: 1dvi')` |
-| has | Has | `CSS.supports('selector(:has(+ *))')` <br>(_Possible false positive in Firefox 112_) |
-| houdini-paint-api | HoudiniPaintApi | `window.CSS.paintWorklet` |
-| individual-transforms | IndividualTransforms | `CSS.supports('transform: scale(1)')` |
-| logical-properties | LogicalProperties | `CSS.supports('border-start-start-radius: 1px')` |
-| media-range-syntax | MediaRangeSyntax | `window.matchMedia('(width >= 1px)')` |
-| nesting | Nesting | `CSS.supports('selector(& a)')` |
-| nth-of-s | NthOfS | `CSS.supports('selector(:nth-child(1 of .a))')` |
-| overscroll-behavior | OverscrollBehavior | `CSS.supports('overscroll-behavior: none')` |
-| relative-color-syntax | RelativeColorSyntax | `CSS.supports('color: rgb(from red r g b / 1%)')` |
-| scroll-timeline | ScrollTimeline | `CSS.supports('scroll-timeline-name: a')` |
-| subgrid | Subgrid | `CSS.supports('grid-template-rows: subgrid')` |
-| text-box-trim | TextBoxTrim | `CSS.supports('(leading-trim: both) or (text-box-trim: both)')` |
-| trigonometry | Trigonometry | `CSS.supports('width: calc(1px * cos(1deg))')` |
-| view-transitions | ViewTransitions | `window.ViewTransition` |
-
+{{ supportTable | safe }}
 
 ### How were these features selected?
 
