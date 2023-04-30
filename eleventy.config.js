@@ -9,6 +9,7 @@ module.exports = function (eleventyConfig) {
     "./dist/bundle.min.js": "js/supports-css.js",
   });
   eleventyConfig.addPassthroughCopy("./docs/**/*.png");
+  eleventyConfig.addPassthroughCopy("./docs/fonts/");
 
   return {
     dir: {

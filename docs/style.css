@@ -1,5 +1,19 @@
 @import url("_prism.css");
 
+@font-face {
+  font-family: "Recursive";
+  src: url("./fonts/recursive-black-webfont.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Recursive";
+  src: url("./fonts/recursive-medium-webfont.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
 :root {
   --color-dark: hsl(266, 97%, 12%);
   --color-light: hsl(266, 97%, 98%);

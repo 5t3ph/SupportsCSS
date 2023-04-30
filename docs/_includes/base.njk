@@ -7,9 +7,8 @@
   <meta name="generator" content="{{ eleventy.generator }}" />
   <link rel="icon" href="{{ '/favicon.png' | url }}">
   <title>{{ title }}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500;900&display=swap" rel="stylesheet">
+  <link rel="preload" href="{{ '/fonts/recursive-black-webfont.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/fonts/recursive-medium-webfont.woff2' | url }}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/style.css' | url }}">
   {% if meta.env == 'prod' %}
   <script async defer data-domain="supportscss.dev" src="https://plausible.io/js/plausible.outbound-links.js"></script>
