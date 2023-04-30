@@ -24,6 +24,7 @@
     "browser support",
     "feature detection"
   ],
+  "homepage": "https://supportscss.dev",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/5t3ph/SupportsCSS.git"

@@ -215,11 +215,12 @@ code:not([class]) {
   min-height: 60vh;
 }
 
-#hero-results:not(:empty) {
+#hero-results {
   display: grid;
   justify-content: center;
   margin-inline: auto;
   width: min(100%, 40ch);
+  min-height: 230px;
   padding: 5% 3%;
   border: max(4px, 3cqi) solid transparent;
   border-image: linear-gradient(
@@ -228,6 +229,10 @@ code:not([class]) {
       var(--color-primary)
     )
     1;
+}
+
+#hero-results:empty::after {
+  content: "Results loading, Javascript required...";
 }
 
 .hero__results {

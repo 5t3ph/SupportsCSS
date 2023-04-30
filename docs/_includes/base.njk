@@ -11,12 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/style.css' | url }}">
+  {% if meta.env == 'prod' %}
+  <script async defer data-domain="supportscss.dev" src="https://plausible.io/js/plausible.outbound-links.js"></script>
+  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+  {% endif %}
 </head>
 <body>
   {{ content | safe }}
 
   {% if meta.env == 'prod' %}
-  <script src="https://www.unpkg.com/supports-css@canary"></script>
+  <script src="https://www.unpkg.com/supports-css"></script>
   {% else %}
   <script src="/js/supports-css.js"></script>
   {% endif %}
