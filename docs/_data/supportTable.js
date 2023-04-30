@@ -24,6 +24,10 @@ const testSuite = [
     test: "`window.CSSScopeRule`",
   },
   {
+    name: "anchor",
+    test: "`CSS.supports('left: anchor(center)')`",
+  },
+  {
     name: "color-function",
     test: "`CSS.supports('color: color(srgb 0 0 1)')`",
   },
@@ -90,6 +94,10 @@ const testSuite = [
   {
     name: "trigonometry",
     test: "`CSS.supports('width: calc(1px * cos(1deg))')`",
+  },
+  {
+    name: "view-timeline",
+    test: "`window.ViewTimeline`",
   },
   {
     name: "view-transitions",

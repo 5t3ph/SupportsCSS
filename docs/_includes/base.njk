@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="{{ eleventy.generator }}" />
+  <link rel="icon" href="{{ '/favicon.png' | url }}">
+  <title>{{ title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/style.css' | url }}">
+</head>
+<body>
+  {{ content | safe }}
+
+  {% if meta.env == 'prod' %}
+  <script src="https://www.unpkg.com/supports-css@canary"></script>
+  {% else %}
+  <script src="/js/supports-css.js"></script>
+  {% endif %}
+  <script>
+    const tests = 'all';
+    window.SupportsCSS && SupportsCSS.init({ tests });
+
+    const heroFeatures = ['at-container', 'color-mix', 'has', 'nesting', 'subgrid'];
+    const heroResults = document.createDocumentFragment();
+    const heroList = document.getElementById('hero-results');
+    if(heroList) {
+      for (const name in SupportsCSSTests.results) {
+        if (heroFeatures.includes(name)) {
+          const li = document.createElement("li");
+          const support = SupportsCSSTests.results[name];
+          const supportTag = document.createElement('span');
+          supportTag.classList.add('pill');
+          supportTag.classList.add('pill--support');
+          supportTag.classList.add(support ? 'supported' : 'unsupported');
+          supportTag.textContent = support ? 'Supported' : 'Unsupported';
+          li.innerText = name;
+          li.insertAdjacentElement('afterbegin', supportTag);
+          heroResults.appendChild(li);
+        }
+      }
+      heroList.appendChild(heroResults);
+    }
+
+    const testTable = document.querySelector('table');
+    const featureCells = testTable.querySelectorAll('tbody td:first-child');
+    featureCells.forEach((cell) => {
+      const feature = cell.textContent;
+      const support = SupportsCSSTests.results[feature];
+      const supportTag = document.createElement('span');
+      supportTag.classList.add('pill');
+      supportTag.classList.add('pill--support');
+      supportTag.classList.add(support ? 'supported' : 'unsupported');
+      supportTag.textContent = support ? 'Supported' : 'Unsupported';
+      cell.insertAdjacentElement('afterbegin', supportTag);
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+---
+title: SupportsCSS
+layout: base.njk
+templateEngineOverride: md, njk
+---
+
+<header class="hero block">
+  <div class="container flex-layout-grid" style="--flex-grid-gap: 4vh 2rem; --flex-grid-align: center;">
+    <div class="hero__content">
+      <h1 translate="no"><span class="gradient-text">SupportsCSS</span> <span class="pill">v{{ pkg.version }}</span></h1>
+      <p class="lead"><mark>Feature Detection</mark> for Modern&nbsp;CSS</p>
+      <ul role="list" class="icon-list">
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.001 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-16a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h16Zm-3 4h-10v10h5V9.5h2.5V17h2.5V7Z"/></svg>
+          <a href="https://www.npmjs.com/package/supports-css">View on NPM</a>
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12.001 2c-5.525 0-10 4.475-10 10a9.994 9.994 0 0 0 6.837 9.488c.5.087.688-.213.688-.476c0-.237-.013-1.024-.013-1.862c-2.512.463-3.162-.612-3.362-1.175c-.113-.288-.6-1.175-1.025-1.413c-.35-.187-.85-.65-.013-.662c.788-.013 1.35.725 1.538 1.025c.9 1.512 2.337 1.087 2.912.825c.088-.65.35-1.087.638-1.337c-2.225-.25-4.55-1.113-4.55-4.938c0-1.088.387-1.987 1.025-2.688c-.1-.25-.45-1.275.1-2.65c0 0 .837-.262 2.75 1.026a9.28 9.28 0 0 1 2.5-.338c.85 0 1.7.112 2.5.337c1.913-1.3 2.75-1.024 2.75-1.024c.55 1.375.2 2.4.1 2.65c.637.7 1.025 1.587 1.025 2.687c0 3.838-2.337 4.688-4.563 4.938c.363.312.676.912.676 1.85c0 1.337-.013 2.412-.013 2.75c0 .262.188.574.688.474A10.016 10.016 0 0 0 22 12c0-5.525-4.475-10-10-10Z"/></svg>
+          <a href="https://github.com/5t3ph/SupportsCSS">Star on GitHub</a>
+        </li>
+      </ul>
+    </div>
+    <div class="hero__results">
+      <ul role="list" id="hero-results"></ul>
+      <a class="button" href="#test-suite">Check full results</a>
+    </div>
+  </div>
+</header> 
+
+<nav class="container">
+  <ul role="list">
+    <li><a href="#about">About</a></li>
+    <li><a href="#test-suite">Test Suite</a></li>
+    <li><a href="#installation">Installation & Usage</a></li>
+  </ul>
+</nav>
+
+<main>
+    <article id="about"  class="container block flex-layout-grid">
+
+<div>
+
+## About SupportsCSS
+
+    <p class="lead">{{ pkg.description }}</p>
+
+Inspired by the legacy of [Modernizr](https://modernizr.com/), this script evaluates a user's browser for cutting-edge modern CSS support beyond the capabilities of `@supports`.
+</div>
+
+<div>
+
+- Classes are added to `<html>` as either `supports-[feature]` or `no-[feature]`, allowing easier progressive enhancement and build strategies
+- Checks for selectors like `:has()`, properties like `text-box-trim`, features like relative color syntax, and at-rules like `@layer` - [see full test suite](#test-suite)
+- Allows adding custom tests
+- Exposes a results object to iterate over detected support, as well as individual results for quick conditional checks in JS
+</div>
+    </article>
+
+    <article class="container container--medium">
+## When To Use SupportsCSS
+
+While `@supports` exists to detect support in CSS itself, it notably doesn't (yet) cover at-rules, such as `@container` or `@layer`. Also, `@supports` cannot reliably test for partial implementations. Additionally, the use of classes simplifies creating selectors.
+
+Plus the support classes eliminate the need to guess and test for the right selector combination to use within an `@supports` block. You might also enjoy the results collection created for easy-access in your JavaScript.
+
+<aside role="note">
+
+SupportsCSS is _not_ a polyfill, it is only feature detection. Continue using tools like [PostCSS](https://postcss.org/) or [LightningCSS](https://lightningcss.dev/) for prefixing and other features like syntax lowering. SupportsCSS is a layer on top of those tools.
+
+</aside>
+
+### As Progressive Enhancement 
+
+Since the classes rely on JavaScript loading and succeeding, you will want to treat any styles based on the support classes as progressive enhancements. This is not too different than including `@supports` in your styles directly.
+
+However, if you have more critical styles and you _do_ expect that _most_ of your audience will have support, consider using a regular `@supports` block in your stylesheets. Then the styles are available as soon as your stylesheet is loaded.
+
+Be sure to also consider if you _need_ feature detection. Many of the modern CSS features are "nice to haves" when they work, but are also ok to fail or use a simple fallback.
+
+You can copy any of the tests from the SupportsCSS test suite that use `CSS.supports` and use those within `@supports`.
+</article>
+
+<article id="test-suite" class="container block">
+
+<h2 class="text-center">Test Suite</h2>
+
+<div class="container container--medium">
+
+Features classes are added to `<html>` and can be used within your stylesheets to modify selectors. They are also the keys to include in the `tests` array.
+
+- **Supported**: `.supports-[feature]`
+- **Unsupported**: `.no-[feature]`
+
+Global names are the keys to access results directly for conditional checks in JavaScript, such as `SupportsCSSTests.ContainerUnits`, which return a boolean.
+
+The test conditions use a combination of CSS API features exposed on the `window` (at-rules and a few others) and the [CSS.supports function](https://developer.mozilla.org/en-US/docs/Web/API/CSS/supports).
+
+
+<p class="lead">Support shown is based on your current browser.</p>
+
+</div>
+
+<div class="responsive-table block">
+
+{{ supportTable | safe }}
+
+</div>
+
+<div class="container container--medium">
+
+<details id="atcontainerstyleproperties-test">
+<summary>
+  AtContainerStyleProperties Test
+</summary>
+
+Support for [container size queries](https://caniuse.com/css-container-queries) was available prior to the availability of [container style queries](https://caniuse.com/css-container-queries-style). And style queries are presently limited to work with only custom property values. Consequently, detecting for `window.CSSContainerRule` does not cover availability of style queries.
+
+To evaluate the availability of container style queries, an SVG is temporarily created and destroyed in order to provide an isolated test environment without side effects. 
+
+The following styles are tested, and if the correct value for `top` is returned, then container style queries are considered supported.
+
+```css
+:root { --a: b; } 
+@container style(--a: b) { 
+  p { top: 1px; } 
+}
+```
+
+The `testEnv()` function is exported for you to use in your own tests if you encounter another scenario that cannot be accurately assessed through the current CSS API.
+</details>
+
+### How were these features selected?
+
+Features were selected based on:
+
+- `@supports` limitations
+- instability of the spec
+- freshness to the language
+- impact on CSS architecture
+- impact on progressive enhancement
+</div>
+</article>
+
+<article id="installation" class="container block">
+
+<div class="container container--medium">
+
+
+## Installation
+
+**Important** - When using a CDN, be sure to version-lock since future releases may remove or modify tests as the specs and browser support stabilizes.
+
+<aside role="note">
+
+All tests are opt-in through the `tests` option array, and expect names that match the feature classes as shown in the [test suite](#test-suite). Alternatively, pass `tests: 'all'` to include the whole test suite.
+</aside>
+
+</div>
+
+<div class="flex-layout-grid block" style="--flex-grid-min: 40ch">
+
+<div>
+
+### Client-side via CDN
+
+Include via a script tag using UNPKG
+
+```html
+<script src="https://www.unpkg.com/supports-css@{{ pkg.version }}"></script>
+```
+
+Follow that with a one-time initialization
+
+```html
+<script>
+  const tests = ['at-container', 'at-container-style-properties', 'at-layer', 'has'];
+  window.SupportsCSS && SupportsCSS.init({ tests });
+</script>
+```
+</div>
+
+<div>
+
+### Client-side module
+
+```html
+<script type="module">
+  import * as SupportsCSS from "https://cdn.skypack.dev/supports-css@{{ pkg.version }}";
+
+  const tests = ['at-container', 'at-container-style-properties', 'at-layer', 'has'];
+  SupportsCSS.init({ tests });
+</script>
+```
+</div>
+
+<div>
+
+### Use in Node or a framework
+
+Install
+
+```js
+npm install supports-css
+```
+
+Import and initialize one-time in a location that will load client-side.
+
+```js
+import * as SupportsCSS from 'supports-css';
+
+const tests = ['at-container', 'at-container-style-properties', 'at-layer', 'has'];
+SupportsCSS.init({tests});
+```
+
+The `init` function does a check for `window` before attempting the tests.
+
+</div>
+
+<div>
+
+### Host on your server
+
+Grab a copy from the `/dist/` folder as appropriate for your environment.
+
+- `bundle.min.js` - for use via a browser script include
+- `bundle.js` - for use as a module
+</div>
+
+</div>
+
+<div class="container container--medium">
+
+
+## Options
+
+The following can be passed to the `init()` function:
+
+- `tests` - **required** array of feature class names that indicate which tests to perform, ex. `['nth-of-s', 'scroll-timeline']`, or pass `'all'` to include the whole test suite
+- `supportsPrefix` - pass a string to customize the prefix for supported features, or `false` to remove the prefix
+- `unsupportedClasses` - pass `false` to skip adding classes for unsupported features
+
+Example initialization with options:
+
+```js
+const tests = ["nth-of-s", "scroll-timeline"];
+// Or, test the whole suite with tests: 'all'
+
+SupportsCSS.init({ tests, unsupportedClasses: false, supportsPrefix: "css" });
+```
+
+## Usage
+
+After install and initialization, `SupportsCSSTests` will be available for global access in client-side scripts. Review [the test suite](#test-suite) for a list of all features tested.
+
+### Get all results
+
+An object of all test results is available as `SupportsCSSTests.results`.
+
+<details>
+<summary>Example results output</summary>
+
+```js
+{
+  "at-container": true,
+  "at-container-style-properties": true,
+  "at-counter-style": true,
+  "at-layer": true,
+  "at-property": true,
+  "at-scope": false,
+  "color-function": true,
+  "color-mix": true,
+  "container-units": true,
+  "dynamic-viewport-units": true,
+  "has": true,
+  "houdini-paint-api": true,
+  "individual-transforms": true,
+  "logical-properties": true,
+  "media-range-syntax": true,
+  "nesting": true,
+  "nth-of-s": true,
+  "overscroll-behavior": true,
+  "relative-color-syntax": false,
+  "scroll-timeline": false,
+  "subgrid": false,
+  "text-box-trim": false,
+  "trigonometry": true,
+  "view-transitions": true
+}
+```
+
+</details>
+
+<details>
+<summary>Generate a list of results and place in DOM</summary>
+
+```js
+const resultsList = document.createDocumentFragment();
+const list = document.createElement("ol");
+resultsList.appendChild(list);
+for (const name in SupportsCSSTests.results) {
+  const li = document.createElement("li");
+  const result = SupportsCSSTests.results[name];
+  li.textContent = `${name}: ${result ? "✅" : "❌"}`;
+  list.appendChild(li);
+}
+document.body.appendChild(resultsList);
+```
+
+</details>
+
+### JavaScript conditional checks 
+
+Access results directly via the "global name", such as `SupportsCSSTests.AtContainerStyleProperties`. 
+
+<details>
+<summary>Example JS conditional</summary>
+
+```js
+if (SupportsCSS.AtContainerStyleProperties) {
+  // Container style queries with custom properties are supported
+}
+```
+
+</details>
+
+### Add a custom test 
+
+Custom tests can be added by choosing a name and creating a test condition that will return a boolean. Add as many as you like using `SupportsCSS.addTest()`.
+
+Here's an example to add a test for `accent-color`:
+
+```js
+SupportsCSS.addTest("accent-color", CSS.supports("accent-color: red"));
+```
+
+Custom tests allow overriding the choices for `supportsPrefix` (3rd argument) and
+`unsupportedClasses` (4th argument) made during intialization.
+
+#### Use with caution: `testEnv()`
+
+The `testEnv()` function is also available for testing that requires an isolated environment due to lack of sufficient exposure via the CSS API. An example is described in the section about the [container style queries test](#atcontainerstyleproperties-test).
+
+This should really only be used **when absolutely necessary**, meaning there is not another readily-available, reliable method. For most selectors, properties, values, and functions, you can likely devise a test that uses the [CSS.supports function](https://developer.mozilla.org/en-US/docs/Web/API/CSS/supports).
+
+Use of `testEnv()` requires the following arguments, in order:
+- styleBlock - a string containing the style block (rules) to use for the test
+- el - the DOM element to create to test against, ex. `p`
+- prop - the property to assess with `getPropertyValue`
+- value - the exact value that should be returned for the prop
+
+Example of using `testEnv()` for a custom test:
+
+```js
+const customResult = SupportsCSS.testEnv('p { top: 1px }', "p", "top", "1px");
+SupportsCSS.addTest("my-test", customResult);
+```
+
+<aside role="note">
+
+**Note** that [getPropertyValue](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/getPropertyValue), the web API used to get the value from the SVG, may return a different value than the original, such as the `rgb()` value that is returned when evaluating a color.
+</aside>
+</div>
+
+</article>
+</main>
+
+<footer class="container container--medium">
+
+## Colophon
+
+Created by [Stephanie Eckles](https://front-end.social/@5t3ph), author of [ModernCSS.dev](https://moderncss.dev), [SmolCSS.dev](https://smolcss.dev), and other [front-end dev resources](https://thinkdobecreate.com).
+
+[Buy me a Coffee](https://www.buymeacoffee.com/moderncss/) • [Sponsor on Github](https://github.com/sponsors/5t3ph)
+</footer>

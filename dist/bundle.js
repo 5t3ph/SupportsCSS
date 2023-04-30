@@ -53,6 +53,10 @@ if (typeof window !== "undefined" && window.CSS) {
       test: window.CSSScopeRule,
     },
     {
+      name: "anchor",
+      test: CSS.supports("left: anchor(center)"),
+    },
+    {
       name: "color-function",
       test: CSS.supports("color: color(srgb 0 0 1)"),
     },
@@ -121,6 +125,10 @@ if (typeof window !== "undefined" && window.CSS) {
       test: CSS.supports("width: calc(1px * cos(1deg))"),
     },
     {
+      name: "view-timeline",
+      test: window.ViewTimeline,
+    },
+    {
       name: "view-transitions",
       test: window.ViewTransition,
     },
@@ -170,9 +178,11 @@ const init = (options) => {
     testSupportsPrefix = supportsPrefix;
     testUnsupportedClasses = unsupportedClasses;
 
+    const allTests = tests === "all";
+
     if (tests.length) {
       for (const { name, test } of testSuite) {
-        if (tests.includes(name)) {
+        if (allTests || tests.includes(name)) {
           addTest(name, test, supportsPrefix, unsupportedClasses);
         }
       }

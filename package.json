@@ -1,6 +1,6 @@
 {
   "name": "supports-css",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Live, in-browser detection of modern CSS support for selectors, features, and at-rules. Applies support-based classes, exposes a results object, and allows custom tests.",
   "main": "dist/bundle.min.js",
   "module": "dist/bundle.js",
@@ -8,7 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "docs": "npx @11ty/eleventy --input=. --output=. --formats=njk",
+    "docs": "ELEVENTY_ENV=prod npx @11ty/eleventy",
+    "docs:serve": "ELEVENTY_ENV=dev npx @11ty/eleventy --serve",
     "build": "rollup --config",
     "bump": "npm --no-git-tag-version version",
     "prepare": "npm run docs && npm run build"
@@ -30,6 +31,8 @@
   "author": "5t3ph",
   "license": "ISC",
   "devDependencies": {
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@11tyrocks/eleventy-plugin-lightningcss": "^1.1.2",
     "@rollup/plugin-terser": "^0.4.1",
     "rollup": "^3.21.0"
   }
