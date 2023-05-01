@@ -180,6 +180,17 @@ h4 {
 
   font-size: clamp(
     max(1rem, var(--_font-min)),
+    var(--_font-min) + 2vw,
+    var(--font-size)
+  );
+}
+
+.supports-container-units
+  :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4, .lead, .fluid-type) {
+  --_font-min: var(--font-size) - var(--font-size) * var(--font-size-diff, 0.4);
+
+  font-size: clamp(
+    max(1rem, var(--_font-min)),
     var(--_font-min) + var(--font-fluid, 2cqi),
     var(--font-size)
   );
@@ -399,6 +410,10 @@ td code {
   max-width: 40ch;
 }
 
+details {
+  margin-block-start: 1em;
+}
+
 summary {
   font-weight: bold;
   font-size: 1.25rem;
@@ -410,9 +425,12 @@ mark {
   display: inline-block;
   padding-inline: 0.25em;
   background-color: var(--color-primary);
+  color: var(--color-dark);
+}
+
+.supports-at-property mark {
   background-color: oklch(70% 0.2 var(--hue, 320));
   animation: color ease-in 10s infinite alternate;
-  color: var(--color-dark);
 }
 
 [role="note"] {
@@ -462,12 +480,18 @@ mark {
 }
 
 .gradient-text {
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(
-    45deg,
-    var(--color-primary),
-    color-mix(in oklch, var(--color-primary), var(--color-accent) 65%),
-    var(--color-accent)
-  );
+  color: var(--color-accent);
+}
+
+@supports (text-fill-color: transparent) {
+  .gradient-text {
+    background-clip: text;
+    text-fill-color: transparent;
+    background-image: linear-gradient(
+      45deg,
+      var(--color-primary),
+      color-mix(in oklch, var(--color-primary), var(--color-accent) 65%),
+      var(--color-accent)
+    );
+  }
 }

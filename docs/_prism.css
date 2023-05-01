@@ -16,7 +16,7 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   padding: 1em;
-  margin: 0;
+  margin-inline: 0;
   overflow: auto;
   max-width: calc(100vw - 2rem);
 }
