@@ -109,7 +109,7 @@ const testSuite = [
   },
   {
     name: "focus-visible",
-    test: "`CSS.supports(selector(:focus-visible)')`",
+    test: "`CSS.supports('selector(:focus-visible)')`",
   },
 ];
 
