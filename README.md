@@ -45,6 +45,8 @@ Review the full docs at [SupportsCSS.dev](https://supportscss.dev).
 | trigonometry | Trigonometry | `CSS.supports('width: calc(1px * cos(1deg))')` |
 | view-timeline | ViewTimeline | `window.ViewTimeline` |
 | view-transitions | ViewTransitions | `window.ViewTransition` |
+| focus-within | FocusWithin | `CSS.supports("selector(:focus-within)")` |
+| focus-visible | FocusVisible | `CSS.supports("selector(:focus-visible)")` |
 
 
 ### How were these features selected?

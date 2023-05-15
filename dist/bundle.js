@@ -132,6 +132,14 @@ if (typeof window !== "undefined" && window.CSS) {
       name: "view-transitions",
       test: window.ViewTransition,
     },
+    {
+      name: "focus-within",
+      test: CSS.supports("selector(:focus-within)"),
+    },
+    {
+      name: "focus-visible",
+      test: CSS.supports("selector(:focus-visible)"),
+    },
   ];
 }
 
