@@ -59,8 +59,8 @@
         test: window.CSSScopeRule,
       },
       {
-        name: "anchor",
-        test: CSS.supports("left: anchor(center)"),
+        name: "anchor-positioning",
+        test: CSS.supports("anchor-name: --a"),
       },
       {
         name: "color-function",
@@ -116,7 +116,7 @@
       },
       {
         name: "scroll-timeline",
-        test: CSS.supports("scroll-timeline-name: a"),
+        test: CSS.supports("scroll-timeline-name: --a"),
       },
       {
         name: "subgrid",
@@ -124,15 +124,23 @@
       },
       {
         name: "text-box-trim",
-        test: CSS.supports("(leading-trim: both) or (text-box-trim: both)"),
+        test: CSS.supports("text-box-trim: both"),
       },
       {
         name: "trigonometry",
         test: CSS.supports("width: calc(1px * cos(1deg))"),
       },
       {
+        name: "user-invalid",
+        test: CSS.supports("selector(:user-invalid)"),
+      },
+      {
+        name: "user-valid",
+        test: CSS.supports("selector(:user-valid)"),
+      },
+      {
         name: "view-timeline",
-        test: window.ViewTimeline,
+        test: CSS.supports("view-timeline-name: --a"),
       },
       {
         name: "view-transitions",

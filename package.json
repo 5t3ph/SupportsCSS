@@ -1,6 +1,6 @@
 {
   "name": "supports-css",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Live, in-browser detection of modern CSS support for selectors, features, and at-rules. Applies support-based classes, exposes a results object, and allows custom tests.",
   "main": "dist/bundle.min.js",
   "module": "dist/bundle.js",

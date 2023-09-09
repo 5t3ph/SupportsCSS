@@ -25,7 +25,7 @@ Review the full docs at [SupportsCSS.dev](https://supportscss.dev).
 | at-layer | AtLayer | `window.CSSLayerBlockRule` |
 | at-property | AtProperty | `window.CSSPropertyRule` |
 | at-scope | AtScope | `window.CSSScopeRule` |
-| anchor | Anchor | `CSS.supports('left: anchor(center)')` |
+| anchor-positioning | AnchorPositioning | `CSS.supports('anchor-name: --a')` |
 | color-function | ColorFunction | `CSS.supports('color: color(srgb 0 0 1)')` |
 | color-mix | ColorMix | `CSS.supports('color: color-mix(in lch, white, black)')` |
 | container-units | ContainerUnits | `CSS.supports('width: 1cqi')` |
@@ -39,11 +39,13 @@ Review the full docs at [SupportsCSS.dev](https://supportscss.dev).
 | nth-of-s | NthOfS | `CSS.supports('selector(:nth-child(1 of .a))')` |
 | overscroll-behavior | OverscrollBehavior | `CSS.supports('overscroll-behavior: none')` |
 | relative-color-syntax | RelativeColorSyntax | `CSS.supports('color: rgb(from red r g b / 1%)')` |
-| scroll-timeline | ScrollTimeline | `CSS.supports('scroll-timeline-name: a')` |
+| scroll-timeline | ScrollTimeline | `CSS.supports('scroll-timeline-name: --a')` |
 | subgrid | Subgrid | `CSS.supports('grid-template-rows: subgrid')` |
-| text-box-trim | TextBoxTrim | `CSS.supports('(leading-trim: both) or (text-box-trim: both)')` |
+| text-box-trim | TextBoxTrim | `CSS.supports('text-box-trim: both')` |
 | trigonometry | Trigonometry | `CSS.supports('width: calc(1px * cos(1deg))')` |
-| view-timeline | ViewTimeline | `window.ViewTimeline` |
+| user-invalid | UserInvalid | `CSS.supports('selector(:user-invalid)')` |
+| user-valid | UserValid | `CSS.supports('selector(:user-valid)')` |
+| view-timeline | ViewTimeline | `CSS.supports('view-timeline-name: --a'),` |
 | view-transitions | ViewTransitions | `window.ViewTransition` |
 
 
