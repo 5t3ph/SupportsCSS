@@ -25,6 +25,7 @@ Review the full docs at [SupportsCSS.dev](https://supportscss.dev).
 | at-layer | AtLayer | `window.CSSLayerBlockRule` |
 | at-property | AtProperty | `window.CSSPropertyRule` |
 | at-scope | AtScope | `window.CSSScopeRule` |
+| at-starting-style | AtStartingStyle | `window.CSSStartingStyleRule` |
 | anchor-positioning | AnchorPositioning | `CSS.supports('anchor-name: --a')` |
 | color-function | ColorFunction | `CSS.supports('color: color(srgb 0 0 1)')` |
 | color-mix | ColorMix | `CSS.supports('color: color-mix(in lch, white, black)')` |
@@ -33,6 +34,7 @@ Review the full docs at [SupportsCSS.dev](https://supportscss.dev).
 | has | Has | `CSS.supports('selector(:has(+ *))')` <br>(_Possible false positive in Firefox 112_) |
 | houdini-paint-api | HoudiniPaintApi | `window.CSS.paintWorklet` |
 | individual-transforms | IndividualTransforms | `CSS.supports('transform: scale(1)')` |
+| light-dark | LightDark | `CSS.supports('color: light-dark(black, white)')` |
 | logical-properties | LogicalProperties | `CSS.supports('border-start-start-radius: 1px')` |
 | media-range-syntax | MediaRangeSyntax | `window.matchMedia('(width >= 1px)')` |
 | nesting | Nesting | `CSS.supports('selector(& a)')` |

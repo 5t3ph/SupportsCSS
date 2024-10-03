@@ -59,6 +59,10 @@
         test: window.CSSScopeRule,
       },
       {
+        name: "at-starting-style",
+        test: window.CSSStartingStyleRule,
+      },
+      {
         name: "anchor-positioning",
         test: CSS.supports("anchor-name: --a"),
       },
@@ -89,6 +93,10 @@
       {
         name: "individual-transforms",
         test: CSS.supports("transform: scale(1)"),
+      },
+      {
+        name: "light-dark",
+        test: CSS.supports("color: light-dark(black, white)"),
       },
       {
         name: "logical-properties",
